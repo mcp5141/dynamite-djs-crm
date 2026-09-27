@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block content %}<div class="page-head"><div><div class="eyebrow">CONTRACT · {{event.first_name}} {{event.last_name}}</div><h1>New Service Agreement</h1><p class="muted">Create a contract record tied to this event.</p></div></div><form method="post" class="panel narrow"><label>Name<input name="name" value="Dynamite DJs Service Agreement"></label><label>Status<select name="status"><option>Created</option><option>Sent</option></select></label><label>Expiration date<input name="expires_at" type="date"></label><label>Contract content<textarea name="content" rows="14">Dynamite DJs Service Agreement
+
+Client: {{event.first_name}} {{event.last_name}}{% if event.partner_name %} & {{event.partner_name}}{% endif %}
+Event date: {{event.event_date}}
+
+Scope of services, payment terms, cancellation terms and other provisions should be finalized here before production use.</textarea></label><div class="form-actions"><a class="btn" href="{{url_for('event_detail',eid=event.id)}}">Cancel</a><button class="btn primary">Create Contract</button></div></form>{% endblock %}

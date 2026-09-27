@@ -1,0 +1,11 @@
+{% extends 'base.html' %}{% block content %}
+<div class="page-head"><div><div class="eyebrow">OPERATIONS</div><h1>Automations</h1><p class="muted">Rules create internal tasks and notifications. Nothing is emailed or texted automatically.</p></div><form method="post" action="{{url_for('run_automations_now')}}"><button class="btn primary">Run engine now</button></form></div>
+<div class="grid two">
+<section class="card"><div class="card-head"><h2>Workflow rules</h2><span class="badge">{{rules|length}} rules</span></div>
+{% for r in rules %}<div class="list-row"><div><strong>{{r.name}}</strong><div class="muted small">{{r.description}}</div></div><form method="post" action="{{url_for('toggle_automation',rid=r.id)}}"><button class="btn small {{'primary' if r.enabled else ''}}">{{'Enabled' if r.enabled else 'Disabled'}}</button></form></div>{% endfor %}
+</section>
+<section class="card"><div class="card-head"><h2>Recent notifications</h2></div>
+{% for n in notifications %}<div class="list-row {{'unread' if not n.read else ''}}"><div><strong>{{n.title}}</strong><div class="muted small">{{n.message}}</div><div class="muted tiny">{{n.created_at}}</div></div>{% if not n.read %}<form method="post" action="{{url_for('mark_notification_read',nid=n.id)}}"><button class="btn small">Mark read</button></form>{% endif %}</div>{% else %}<div class="empty">No notifications yet.</div>{% endfor %}
+</section></div>
+<div class="card"><div class="card-head"><h2>Automation behavior</h2></div><ul class="clean"><li>Automations are idempotent: the same rule will not create duplicate tasks.</li><li>AI or automation never sends a client message on its own.</li><li>Lead, planning, payment and review workflows are tracked in the CRM audit trail.</li><li>Run the engine from this page while the app is hosted without a background worker; later, a scheduler can call the same engine automatically.</li></ul></div>
+{% endblock %}

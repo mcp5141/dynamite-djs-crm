@@ -1,0 +1,16 @@
+{% extends 'base.html' %}{% block content %}<div class="page-head"><div><div class="eyebrow">QUESTIONNAIRE · {{event.first_name}} {{event.last_name}}</div><h1>New Questionnaire</h1><p class="muted">One question per line. A secure client portal link will be generated.</p></div></div><form method="post" class="panel narrow"><label>Title<input name="title" value="Wedding Planning Questionnaire"></label><label>Due date<input name="due_date" type="date"></label><label>Questions<textarea name="questions" rows="15">Couple names
+Wedding date
+Venue
+Ceremony start time
+Reception start time
+Estimated guest count
+Grand entrance preferences
+First dance song
+Parent dance songs
+Must-play songs
+Do-not-play songs
+Preferred genres
+Special announcements or traditions
+Day-of contact
+Emergency contact
+Additional notes</textarea></label><div class="form-actions"><button class="btn primary">Create Questionnaire</button></div></form>{% endblock %}
